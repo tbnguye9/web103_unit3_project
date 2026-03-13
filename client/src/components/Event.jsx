@@ -1,62 +1,87 @@
-import React, { useState, useEffect } from 'react'
-import '../css/Event.css'
+import React from "react";
+import "../css/Event.css";
 
-const Event = (props) => {
+const Event = ({ event }) => {
+  const getEventDateTime = () => {
+    if (!event?.date || !event?.time) return null;
 
-    const [event, setEvent] = useState([])
-    const [time, setTime] = useState([])
-    const [remaining, setRemaining] = useState([])
+    const parsed = new Date(`${event.date} ${event.time}`);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  };
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const eventData = await EventsAPI.getEventsById(props.id)
-                setEvent(eventData)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [])
+  const getCountdown = () => {
+    const eventDateTime = getEventDateTime();
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const result = await dates.formatTime(event.time)
-                setTime(result)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+    if (!eventDateTime) return "Date unavailable";
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const timeRemaining = await dates.formatRemainingTime(event.remaining)
-                setRemaining(timeRemaining)
-                dates.formatNegativeTimeRemaining(remaining, event.id)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+    const diff = eventDateTime.getTime() - Date.now();
 
-    return (
-        <article className='event-information'>
-            <img src={event.image} />
+    const totalMinutes = Math.floor(diff / (1000 * 60));
+    const totalHours = Math.floor(diff / (1000 * 60 * 60));
+    const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-            <div className='event-information-overlay'>
-                <div className='text'>
-                    <h3>{event.title}</h3>
-                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {event.date} <br /> {time}</p>
-                    <p id={`remaining-${event.id}`}>{remaining}</p>
-                </div>
-            </div>
-        </article>
-    )
-}
+    if (diff < 0) {
+      const absMinutes = Math.abs(totalMinutes);
+      const absHours = Math.abs(totalHours);
+      const absDays = Math.abs(totalDays);
 
-export default Event
+      if (absDays > 0) {
+        return `-${absDays} day(s)`;
+      }
+
+      if (absHours > 0) {
+        return `-${absHours} hour(s)`;
+      }
+
+      return `-${absMinutes} minute(s)`;
+    }
+
+    if (totalDays > 0) {
+      const remainingHours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      return `${totalDays} day(s), ${remainingHours} hour(s)`;
+    }
+
+    if (totalHours > 0) {
+      const remainingMinutes = Math.floor(
+        (diff % (1000 * 60 * 60)) / (1000 * 60),
+      );
+      return `${totalHours} hour(s), ${remainingMinutes} minute(s)`;
+    }
+
+    return `${totalMinutes} minute(s)`;
+  };
+
+  const isPastEvent = () => {
+    const eventDateTime = getEventDateTime();
+    if (!eventDateTime) return false;
+    return eventDateTime.getTime() < Date.now();
+  };
+
+  return (
+    <article className="event-information">
+      <img src={event.image} alt={event.title} />
+
+      <div className="event-information-overlay">
+        <div className="text">
+          <h3>{event.title}</h3>
+
+          <p>
+            <i className="fa-regular fa-calendar fa-bounce"></i> {event.date}
+          </p>
+
+          <p>
+            <i className="fa-regular fa-clock fa-bounce"></i> {event.time}
+          </p>
+
+          <p className={isPastEvent() ? "negative-time-remaining" : ""}>
+            {getCountdown()}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+};
+
+export default Event;
