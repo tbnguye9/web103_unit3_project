@@ -7,7 +7,7 @@ UnityGrid Plaza is a React web application that displays music events across mul
 Users can view events by location, browse all events, sort events by date, and see a countdown timer for upcoming events.  
 The app connects to a PostgreSQL database to retrieve event data dynamically.
 
-Time spent: **8 hours**
+Time spent: **9 hours**
 
 ---
 
@@ -49,7 +49,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-[Video Walkthrough](https://i.imgur.com/qJXiFCH.mp4) | Gif Images: https://i.imgur.com/qJXiFCH.gif
+[Video Walkthrough](https://i.imgur.com/yCzqucU.mp4) | Gif Images: https://i.imgur.com/yCzqucU.gif
 
 GIF created with:
 

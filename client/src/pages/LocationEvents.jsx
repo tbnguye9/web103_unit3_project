@@ -92,12 +92,12 @@ const LocationEvents = ({ index }) => {
             >
               <Event event={event} />
               <div className="event-extra-info">
-                <p>
+                {/* <p>
                   <strong>Date:</strong> {formatEventDate(event)}
                 </p>
                 <p>
                   <strong>Countdown:</strong> {getCountdown(event)}
-                </p>
+                </p> */}
               </div>
             </div>
           ))

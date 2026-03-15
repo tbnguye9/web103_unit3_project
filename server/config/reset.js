@@ -34,11 +34,11 @@ const createTables = async () => {
         ('American Airlines Center', '2500 Victory Ave', 'Dallas', 'TX', '75219', 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800');
 
       INSERT INTO events (location_id, title, date, time, image) VALUES
-        (1, 'Indie Night', 'Mar 20, 2025', '8:00 PM', 'https://images.unsplash.com/photo-1501386761578-eaa54b8b3b59?w=800'),
+        (1, 'Indie Night', 'Mar 20, 2025', '8:00 PM', 'https://i.scdn.co/image/ab6761610000e5ebe63ceef20dce0ac6522c4011'),
         (1, 'Jazz Fusion', 'Apr 5, 2025', '7:30 PM', 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800'),
         (2, 'Rock Festival', 'Mar 23, 2025', '7:00 PM', 'https://images.unsplash.com/photo-1468359601543-843bfaef291a?w=800'),
         (2, 'Blues Night', 'Apr 10, 2025', '9:00 PM', 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800'),
-        (3, 'EDM Rave', 'May 1, 2025', '10:00 PM', 'https://images.unsplash.com/photo-1571079570759-8b8bd9cb76bf?w=800'),
+        (3, 'EDM Rave', 'May 1, 2025', '10:00 PM', 'https://bandwagmag.com/wp-content/uploads/2016/12/10-og.jpg'),
         (4, 'NBA Game', 'Mar 30, 2025', '7:30 PM', 'https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=800'),
         (4, 'Concert Night', 'Apr 15, 2025', '8:00 PM', 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800');
     `);

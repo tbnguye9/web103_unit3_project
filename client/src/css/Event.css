@@ -174,3 +174,43 @@
     border-radius: 4px;
   }
 }
+
+/* --- hide text events --- */
+
+.event-information {
+  overflow: hidden;
+  background: transparent;
+}
+
+.event-information img {
+  display: block;
+}
+
+.event-information-overlay {
+  top: 0;
+}
+
+.text {
+  width: 80%;
+  text-align: center;
+}
+
+.text h3 {
+  color: white;
+  margin: 0 0 12px 0;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.text p {
+  margin: 8px 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* optional: make passed countdown look cleaner */
+.negative-time-remaining {
+  margin-top: 12px;
+  border-radius: 6px;
+}
